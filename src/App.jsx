@@ -19,7 +19,7 @@ async function tbaFetch(path) {
 async function getOntarioEvents(year = CURRENT_YEAR) {
   const events = await tbaFetch(`/events/${year}`);
   return events
-    .filter(e => e.state_prov === "Ontario" && e.event_type <= 6)
+    .filter(e => e.state_prov === "ON" && e.event_type <= 6)
     .sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
 }
 
