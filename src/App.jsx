@@ -33,23 +33,22 @@ async function getEventTeams(eventKey) {
 // ─── STORAGE ──────────────────────────────────────────────────────────────────
 async function storageGet(key) {
   try {
-    const r = await window.storage.get(key, true);
-    return r ? JSON.parse(r.value) : null;
+    const val = localStorage.getItem("shared:" + key);
+    return val ? JSON.parse(val) : null;
   } catch { return null; }
 }
 async function storageSet(key, val) {
-  try { await window.storage.set(key, JSON.stringify(val), true); } catch {}
+  try { localStorage.setItem("shared:" + key, JSON.stringify(val)); } catch {}
 }
 async function storageGetPersonal(key) {
   try {
-    const r = await window.storage.get(key, false);
-    return r ? JSON.parse(r.value) : null;
+    const val = localStorage.getItem("personal:" + key);
+    return val ? JSON.parse(val) : null;
   } catch { return null; }
 }
 async function storageSetPersonal(key, val) {
-  try { await window.storage.set(key, JSON.stringify(val), false); } catch {}
+  try { localStorage.setItem("personal:" + key, JSON.stringify(val)); } catch {}
 }
-
 // ─── SCORING ──────────────────────────────────────────────────────────────────
 function scoreSubmission(prediction, actual) {
   let score = 0;
